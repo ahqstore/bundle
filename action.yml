@@ -1,23 +1,46 @@
-name: The name of your action here
-description: Provide a description here
-author: Your name or organization here
+name: AHQ Store Bundle
+description: Bundle AHQ Store Applications with provenance and OIDC
+author: AHQ Softwares
 
 # Add your action's branding here. This will appear on the GitHub Marketplace.
 branding:
-  icon: heart
-  color: red
+  icon: package
+  color: blue
 
 # Define your inputs here.
 inputs:
-  milliseconds:
-    description: Your input description here
+  privkey:
+    description: Enter the ED25519 Private Key that you have generated
     required: true
-    default: '1000'
+
+  atrifact-dir:
+    description: Directory to the artifacts in order, defaults to ./artifacts
+    default: ./artifacts
+    required: true
+
+  ahqstore-meta:
+    description: AHQ Store Metadata Directory
+    default: ./ahqstore
+    required: true
+
+  ahqstore-id:
+    description: Application ID, defaults to the 1st id
+    required: false
+
+  release-id:
+    description:
+      Release ID to upload the signed artifacts to including ahqstore.tarball
+    required: true
+
+  github-token:
+    description: GitHub Token to aid in uploading, defaults to GitHub Token
+    default: ${{ github.token }}
+    required: true
 
 # Define your outputs here.
-outputs:
-  time:
-    description: Your output description here
+# outputs:
+#   time:
+#     description: Your output description here
 
 runs:
   using: node24
