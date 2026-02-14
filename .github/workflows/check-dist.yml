@@ -23,7 +23,7 @@ permissions:
 jobs:
   check-dist:
     name: Check dist/
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-slim
 
     steps:
       - name: Checkout
@@ -35,19 +35,16 @@ jobs:
         uses: actions/setup-node@v6
         with:
           node-version-file: .node-version
-          cache: npm
+          cache: true
+          package-manager-cache: true
 
-      - name: Remove dist/ Directory
-        id: remove-dist
-        run: npx rimraf ./dist
-
-      - name: Install Dependencies
-        id: install
-        run: npm ci
+      - name: Setup PNPM and Dependencies
+        run: |
+          npm i -g pnpm
+          pnpm install --frozen-lockfile
 
       - name: Build dist/ Directory
-        id: build
-        run: npm run bundle
+        run: pnpm build
 
       # This will fail the workflow if the `dist/` directory is different than
       # expected.
