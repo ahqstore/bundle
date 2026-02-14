@@ -28196,11 +28196,11 @@ function unzipSync(data, opts) {
     }
     return files;
 }async function installAHQStoreCli() {
-    info("⏲️ Downloading AHQ Store CLI");
+    info('⏲️ Downloading AHQ Store CLI');
     const targetData = calculateTargetTriple();
     const downloadPath = `https://github.com/ahqstore/cli/releases/latest/download/ahqstore_cli_rs-${targetData.triple}.zip`;
     const ahqstorecli = await fetch(downloadPath).then((r) => r.arrayBuffer());
-    info("⏲️ Extracting AHQ Store CLI");
+    info('⏲️ Extracting AHQ Store CLI');
     const unzipped = unzipSync(new Uint8Array(ahqstorecli));
     const f = unzipped[targetData.file];
     const cacheDir = join(tmpdir(), `ahqstorecache_${Math.random() * 1000000}`);
@@ -28211,38 +28211,38 @@ function unzipSync(data, opts) {
         chmodSync(ahqstore, 0o755);
     }
     addPath(cacheDir);
-    info("✅ Installed AHQ Store CLI");
+    info('✅ Installed AHQ Store CLI');
 }
 function calculateTargetTriple() {
     const os = process.platform;
     const arch = process.arch;
-    let target = "";
-    let file = "ahqstore";
+    let target = '';
+    let file = 'ahqstore';
     switch (arch) {
-        case "arm64":
-            target += "aarch64-";
+        case 'arm64':
+            target += 'aarch64-';
             break;
-        case "x64":
-            target += "x86_64-";
+        case 'x64':
+            target += 'x86_64-';
             break;
         default:
             warning(`Unknown architecture : ${arch}`);
-            throw new Error("Exited : ERR_UNSUPPORTED_ARCH");
+            throw new Error('Exited : ERR_UNSUPPORTED_ARCH');
     }
     switch (os) {
-        case "win32":
-            target += "pc-windows-msvc";
-            file += ".exe";
+        case 'win32':
+            target += 'pc-windows-msvc';
+            file += '.exe';
             break;
-        case "linux":
-            target += "unknown-linux-gnu";
+        case 'linux':
+            target += 'unknown-linux-gnu';
             break;
-        case "darwin":
-            target += "apple-macos";
+        case 'darwin':
+            target += 'apple-macos';
             break;
         default:
             warning(`Unknown operating system : ${os}`);
-            throw new Error("Exited : ERR_UNSUPPORTED_OS");
+            throw new Error('Exited : ERR_UNSUPPORTED_OS');
     }
     return {
         triple: target,
