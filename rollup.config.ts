@@ -17,10 +17,7 @@ export default {
     compact: true
   },
   // Treats Node.js internals as external so they aren't bundled
-  external: [
-    ...builtinModules,
-    /^node:/
-  ],
+  external: [...builtinModules, /^node:/],
   plugins: [
     typescript({
       // Ensures the compiler uses the same settings as your linting/IDE
