@@ -35,8 +35,6 @@ jobs:
         uses: actions/setup-node@v6
         with:
           node-version-file: .node-version
-          cache: true
-          package-manager-cache: true
 
       - name: Setup PNPM and Dependencies
         run: |
