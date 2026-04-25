@@ -39,11 +39,11 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@actions/core": "^3.0.0",
+    "@actions/core": "^3.0.1",
     "@actions/github": "^9.0.0",
-    "@sigstore/sign": "^4.1.0",
+    "@sigstore/sign": "^4.1.1",
     "fflate": "^0.8.2",
-    "tar": "^7.5.7"
+    "tar": "^7.5.13"
   },
   "devDependencies": {
     "@github/local-action": "^7.0.0",
